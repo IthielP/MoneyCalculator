@@ -24,7 +24,8 @@ public class MoneyCalculator {
     }
     private double amount;
     private double exchangeRate;
-    private String currency;
+    private String currencyFrom;
+    private String currencyTo;
     private void execute() throws Exception{
         input();
         proces();
@@ -34,15 +35,16 @@ public class MoneyCalculator {
         System.out.println("Introduzca una cantidad");
         Scanner scanner = new Scanner(System.in);
         amount = Double.parseDouble(scanner.next());
-        System.out.println("Introduzca una divisa");
-        Scanner input = new Scanner(System.in);
-        currency = input.next();
+        System.out.println("Introduzca una divisa de origen");
+        currencyFrom = scanner.next();
+        System.out.println("Introduzca una divisa de destino");
+        currencyTo = scanner.next();
     }
     private void proces() throws Exception{
         exchangeRate = getExchangeRate("USD","EUR");
     }
     private void output() throws Exception{
-        System.out.println(amount+" USD equivalen a "+amount*exchangeRate+" EUR");
+        System.out.println(amount+" "+currencyFrom+"equivalen a "+amount*exchangeRate+" "+currencyTo);
     }
     private static double getExchangeRate(String from, String to) throws Exception{
         URL url = new URL("http://api.fixer.io/latest?base=" +from+"&symbols="+to);
