@@ -24,16 +24,19 @@ public class MoneyCalculator {
     }
     private double amount;
     private double exchangeRate;
-    
+    private String currency;
     private void execute() throws Exception{
         input();
         proces();
         output();
     }
     private void input() throws Exception{
-        System.out.println("Introduzca una cantidad de dólares");
+        System.out.println("Introduzca una cantidad");
         Scanner scanner = new Scanner(System.in);
         amount = Double.parseDouble(scanner.next());
+        System.out.println("Introduzca una divisa");
+        Scanner input = new Scanner(System.in);
+        currency = input.next();
     }
     private void proces() throws Exception{
         exchangeRate = getExchangeRate("USD","EUR");
