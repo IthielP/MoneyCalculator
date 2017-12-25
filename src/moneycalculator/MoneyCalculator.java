@@ -19,11 +19,27 @@ public class MoneyCalculator {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        System.out.println("Introduzca una cantidad de dolares");
+        MoneyCalculator moneyCalculator = new MoneyCalculator();
+        moneyCalculator.execute();
+    }
+    private double amount;
+    private double exchangeRate;
+    
+    private void execute() throws Exception{
+        input();
+        proces();
+        output();
+    }
+    private void input() throws Exception{
+        System.out.println("Introduzca una cantidad de dólares");
         Scanner scanner = new Scanner(System.in);
-        double amount = Double.parseDouble(scanner.next());
-        double exchangeRate = getExchangeRate("USD","EUR");
-        System.out.println(amount+" USD equivalen a"+amount*exchangeRate+"EUR");
+        amount = Double.parseDouble(scanner.next());
+    }
+    private void proces() throws Exception{
+        exchangeRate = getExchangeRate("USD","EUR");
+    }
+    private void output() throws Exception{
+        System.out.println(amount+" USD equivalen a "+amount*exchangeRate+" EUR");
     }
     private static double getExchangeRate(String from, String to) throws Exception{
         URL url = new URL("http://api.fixer.io/latest?base=" +from+"&symbols="+to);
